@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.wipro.consultacep.dtos.CepRequestDTO;
+import br.com.wipro.consultacep.dtos.ResponseDTO;
 import br.com.wipro.consultacep.service.CepService;
 
 @RestController
@@ -17,8 +18,9 @@ public class CepController {
 	private CepService cepService;
 
 	@PostMapping("/consulta-endereco")
-	public void consultarCep(@RequestBody CepRequestDTO cep) {
-		cepService.consultarEndereco();
+	public ResponseDTO consultarCep(@RequestBody CepRequestDTO requestDTO) {
+		cepService.consultarEndereco(requestDTO);
+		return null;
 	}
 	
 }

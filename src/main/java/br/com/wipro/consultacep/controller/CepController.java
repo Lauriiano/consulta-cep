@@ -19,8 +19,6 @@ public class CepController {
 
 	@PostMapping("/consulta-endereco")
 	public ResponseDTO consultarCep(@RequestBody CepRequestDTO requestDTO) {
-		cepService.consultarEndereco(requestDTO);
-		return null;
+		return cepService.consultarEndereco(requestDTO);
 	}
-	
 }

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import br.com.wipro.consultacep.domain.exceptions.CepInvalidoException;
+import br.com.wipro.consultacep.domain.exceptions.RequestErroViaCep;
 
 @ControllerAdvice
 public class ExceptionsHandlerApi {
@@ -16,6 +17,17 @@ public class ExceptionsHandlerApi {
 	
 	@ExceptionHandler(CepInvalidoException.class)
 	public ResponseEntity<?> cepInvalidoException(CepInvalidoException e) {
+		
+		bodyException = ExceptionsBody.builder()
+				.dataHora(LocalDateTime.now())
+				.mensagem(e.getMessage())
+				.build();
+		
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(bodyException);
+	}
+	
+	@ExceptionHandler(RequestErroViaCep.class)
+	public ResponseEntity<?> RequestViaCepException(RequestErroViaCep e) {
 		
 		bodyException = ExceptionsBody.builder()
 				.dataHora(LocalDateTime.now())

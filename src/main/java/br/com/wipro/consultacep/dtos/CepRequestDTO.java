@@ -5,6 +5,6 @@ import lombok.Data;
 @Data
 public class CepRequestDTO {
 
-	public String CEP;
+	public String cep;
 	
 }
